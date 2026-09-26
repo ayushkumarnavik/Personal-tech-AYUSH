@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Contact | Ayush Kumar Navik</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* ================================
+           CONTACT PAGE
+        ================================= */
+
+        .contact-page {
+            min-height: 100vh;
+            padding: 105px 18px 40px;
+            position: relative;
+            z-index: 5;
+        }
+
+        .contact-container {
+            width: min(1050px, 100%);
+            margin: auto;
+        }
+
+        /* HEADER */
+
+        .contact-heading {
+            text-align: center;
+            margin-bottom: 42px;
+        }
+
+        .contact-heading .small-title {
+            color: #00f7ff;
+            font-size: 0.75rem;
+            font-weight: 900;
+            letter-spacing: 5px;
+            margin-bottom: 12px;
+        }
+
+        .contact-heading h1 {
+            margin: 0;
+
+            font-size: clamp(2.7rem, 8vw, 5.5rem);
+            font-weight: 1000;
+            letter-spacing: 2px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #00f7ff,
+                    #ffffff,
+                    #ff00d4,
+                    #8b5cff,
+                    #00f7ff
+                );
+
+            background-size: 300%;
+
+            -webkit-background-clip: text;
+            background-clip: text;
+
+            color: transparent;
+
+            animation: gradientText 7s linear infinite;
+        }
+
+        .contact-heading p {
+            max-width: 650px;
+            margin: 15px auto 0;
+
+            color: rgba(255,255,255,0.65);
+            line-height: 1.7;
+        }
+
+        /* MAIN CONTACT CARD */
+
+        .contact-card {
+            display: grid;
+            grid-template-columns: 0.85fr 1.15fr;
+            gap: 25px;
+
+            padding: 25px;
+
+            border-radius: 30px;
+
+            border: 1px solid rgba(0,247,255,0.25);
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(0,247,255,0.08),
+                    rgba(139,92,255,0.08),
+                    rgba(255,0,212,0.06)
+                );
+
+            backdrop-filter: blur(18px);
+
+            box-shadow:
+                0 0 50px rgba(0,247,255,0.08),
+                inset 0 0 40px rgba(255,255,255,0.015);
+        }
+
+        /* LEFT SIDE */
+
+        .contact-info {
+            position: relative;
+            overflow: hidden;
+
+            min-height: 450px;
+
+            padding: 35px;
+
+            border-radius: 24px;
+
+            background:
+                radial-gradient(
+                    circle at 20% 20%,
+                    rgba(0,247,255,0.15),
+                    transparent 35%
+                ),
+                rgba(0,0,0,0.2);
+
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .contact-info::after {
+            content: "";
+
+            position: absolute;
+
+            width: 180px;
+            height: 180px;
+
+            border-radius: 50%;
+
+            right: -90px;
+            bottom: -90px;
+
+            background: rgba(255,0,212,0.15);
+
+            filter: blur(55px);
+        }
+
+        .contact-info h2 {
+            margin: 0 0 15px;
+
+            font-size: 2rem;
+            color: white;
+        }
+
+        .contact-info > p {
+            color: rgba(255,255,255,0.6);
+            line-height: 1.7;
+        }
+
+        /* TERMINAL */
+
+        .terminal {
+            margin-top: 30px;
+
+            border-radius: 16px;
+
+            overflow: hidden;
+
+            border: 1px solid rgba(0,247,255,0.18);
+
+            background: rgba(0,0,0,0.4);
+        }
+
+        .terminal-top {
+            display: flex;
+            gap: 7px;
+
+            padding: 12px 14px;
+
+            border-bottom: 1px solid rgba(255,255,255,0.07);
+        }
+
+        .terminal-dot {
+            width: 9px;
+            height: 9px;
+
+            border-radius: 50%;
+
+            background: rgba(255,255,255,0.35);
+        }
+
+        .terminal-body {
+            padding: 17px;
+
+            font-family: monospace;
+
+            font-size: 0.75rem;
+
+            line-height: 1.9;
+
+            color: rgba(255,255,255,0.65);
+        }
+
+        .terminal-body .cyan {
+            color: #00f7ff;
+        }
+
+        .terminal-body .pink {
+            color: #ff00d4;
+        }
+
+        /* CONTACT DETAILS */
+
+        .contact-detail {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+
+            margin-top: 25px;
+        }
+
+        .detail-icon {
+            width: 45px;
+            height: 45px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 14px;
+
+            border: 1px solid rgba(0,247,255,0.2);
+
+            background: rgba(0,247,255,0.06);
+
+            font-size: 1.1rem;
+        }
+
+        .contact-detail strong {
+            display: block;
+            color: white;
+            font-size: 0.85rem;
+        }
+
+        .contact-detail span {
+            display: block;
+            color: rgba(255,255,255,0.45);
+            font-size: 0.72rem;
+            margin-top: 3px;
+        }
+
+        /* FORM */
+
+        .contact-form {
+            padding: 35px;
+
+            border-radius: 24px;
+
+            border: 1px solid rgba(255,255,255,0.08);
+
+            background: rgba(0,0,0,0.18);
+        }
+
+        .form-label {
+            display: block;
+
+            margin-bottom: 9px;
+
+            color: rgba(255,255,255,0.75);
+
+            font-size: 0.75rem;
+
+            font-weight: 900;
+
+            letter-spacing: 1.5px;
+        }
+
+        .input-box {
+            width: 100%;
+
+            box-sizing: border-box;
+
+            padding: 15px 16px;
+
+            margin-bottom: 20px;
+
+            border-radius: 14px;
+
+            border: 1px solid rgba(0,247,255,0.18);
+
+            outline: none;
+
+            background: rgba(0,247,255,0.035);
+
+            color: white;
+
+            font-family: inherit;
+
+            font-size: 0.9rem;
+
+            transition: 0.3s ease;
+        }
+
+        .input-box::placeholder {
+            color: rgba(255,255,255,0.3);
+        }
+
+        .input-box:focus {
+            border-color: #00f7ff;
+
+            background: rgba(0,247,255,0.06);
+
+            box-shadow:
+                0 0 20px rgba(0,247,255,0.1);
+        }
+
+        textarea.input-box {
+            min-height: 160px;
+            resize: vertical;
+        }
+
+        /* SEND BUTTON */
+
+        .whatsapp-btn {
+            width: 100%;
+
+            min-height: 56px;
+
+            border: 0;
+            border-radius: 16px;
+
+            cursor: pointer;
+
+            color: white;
+
+            font-family: inherit;
+
+            font-size: 0.8rem;
+
+            font-weight: 1000;
+
+            letter-spacing: 1.5px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #00c9ff,
+                    #00f7ff,
+                    #8b5cff,
+                    #ff00d4
+                );
+
+            background-size: 250%;
+
+            box-shadow:
+                0 0 25px rgba(0,247,255,0.18);
+
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease;
+
+            animation: buttonFlow 5s linear infinite;
+        }
+
+        .whatsapp-btn:hover {
+            transform: translateY(-4px);
+
+            box-shadow:
+                0 0 35px rgba(0,247,255,0.35),
+                0 0 60px rgba(255,0,212,0.15);
+        }
+
+        @keyframes buttonFlow {
+            0% {
+                background-position: 0%;
+            }
+
+            100% {
+                background-position: 250%;
+            }
+        }
+
+        .form-note {
+            text-align: center;
+
+            margin-top: 13px;
+
+            color: rgba(255,255,255,0.35);
+
+            font-size: 0.65rem;
+
+            line-height: 1.5;
+        }
+
+        /* SUCCESS MESSAGE */
+
+        .success-message {
+            display: none;
+
+            margin-top: 15px;
+
+            padding: 13px;
+
+            border-radius: 12px;
+
+            text-align: center;
+
+            color: #dfffff;
+
+            background: rgba(0,247,255,0.07);
+
+            border: 1px solid rgba(0,247,255,0.2);
+
+            font-size: 0.75rem;
+        }
+
+        /* NAVIGATION */
+
+        .page-navigation {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 15px;
+
+            margin-top: 45px;
+        }
+
+        .nav-page-btn {
+            display: inline-flex;
+
+            align-items: center;
+            justify-content: center;
+
+            min-height: 48px;
+
+            padding: 0 20px;
+
+            border-radius: 50px;
+
+            color: white;
+
+            text-decoration: none;
+
+            border: 1px solid rgba(0,247,255,0.25);
+
+            background: rgba(0,247,255,0.05);
+
+            font-size: 0.72rem;
+
+            font-weight: 900;
+
+            letter-spacing: 1px;
+
+            transition: 0.3s ease;
+        }
+
+        .nav-page-btn:hover {
+            transform: translateY(-3px);
+
+            border-color: #00f7ff;
+
+            background: rgba(0,247,255,0.12);
+
+            box-shadow:
+                0 0 25px rgba(0,247,255,0.18);
+        }
+
+        .page-counter {
+            color: rgba(255,255,255,0.4);
+
+            font-size: 0.7rem;
+
+            font-weight: 900;
+
+            letter-spacing: 3px;
+        }
+
+        /* FINAL LINE */
+
+        .final-line {
+            text-align: center;
+
+            margin-top: 35px;
+
+            color: rgba(255,255,255,0.35);
+
+            font-size: 0.68rem;
+
+            letter-spacing: 2px;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 850px) {
+
+            .contact-page {
+                padding: 95px 14px 30px;
+            }
+
+            .contact-card {
+                grid-template-columns: 1fr;
+                padding: 14px;
+            }
+
+            .contact-info {
+                min-height: auto;
+                padding: 27px;
+            }
+
+            .contact-form {
+                padding: 27px;
+            }
+        }
+
+        @media (max-width: 520px) {
+
+            .contact-heading h1 {
+                font-size: 2.65rem;
+            }
+
+            .contact-heading p {
+                font-size: 0.82rem;
+            }
+
+            .contact-info,
+            .contact-form {
+                padding: 22px;
+            }
+
+            .contact-info h2 {
+                font-size: 1.55rem;
+            }
+
+            .page-navigation {
+                flex-direction: column;
+            }
+
+            .nav-page-btn {
+                width: 100%;
+            }
+
+            .page-counter {
+                order: -1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- FUTURISTIC BACKGROUND -->
+
+    <div class="orb orb-one"></div>
+    <div class="orb orb-two"></div>
+    <div class="grid"></div>
+
+    <div class="particles">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+
+    <!-- NAVBAR -->
+
+    <nav class="navbar">
+
+        <a href="index.html" class="logo">
+            AYUSH<span>.</span>
+        </a>
+
+        <div class="status">
+            <span></span>
+            SYSTEM ONLINE
+        </div>
+
+    </nav>
+
+
+    <!-- CONTACT PAGE -->
+
+    <main class="contact-page">
+
+        <div class="contact-container">
+
+
+            <!-- HEADING -->
+
+            <header class="contact-heading">
+
+                <div class="small-title">
+                    SYSTEM / CONTACT / 04
+                </div>
+
+                <h1>CONNECT</h1>
+
+                <p>
+                    Have an idea, project or something interesting
+                    to discuss? Send a message directly through
+                    WhatsApp.
+                </p>
+
+            </header>
+
+
+            <!-- CONTACT CARD -->
+
+            <section class="contact-card">
+
+
+                <!-- LEFT -->
+
+                <div class="contact-info">
+
+                    <h2>
+                        LET'S CONNECT.
+                    </h2>
+
+                    <p>
+                        Start a conversation and turn an idea
+                        into something real.
+                    </p>
+
+
+                    <!-- TERMINAL -->
+
+                    <div class="terminal">
+
+                        <div class="terminal-top">
+
+                            <span class="terminal-dot"></span>
+                            <span class="terminal-dot"></span>
+                            <span class="terminal-dot"></span>
+
+                        </div>
+
+                        <div class="terminal-body">
+
+                            <div>
+                                <span class="cyan">></span>
+                                initializing_connection...
+                            </div>
+
+                            <div>
+                                <span class="cyan">></span>
+                                status:
+                                <span class="pink">ONLINE</span>
+                            </div>
+
+                            <div>
+                                <span class="cyan">></span>
+                                communication:
+                                <span class="pink">WHATSAPP</span>
+                            </div>
+
+                            <div>
+                                <span class="cyan">></span>
+                                response:
+                                <span class="pink">READY</span>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- CONTACT DETAIL -->
+
+                    <div class="contact-detail">
+
+                        <div class="detail-icon">
+                            💬
+                        </div>
+
+                        <div>
+                            <strong>WhatsApp</strong>
+                            <span>Direct messaging available</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- RIGHT FORM -->
+
+                <div class="contact-form">
+
+                    <form id="whatsappForm">
+
+                        <label class="form-label" for="visitorName">
+                            YOUR NAME
+                        </label>
+
+                        <input
+                            class="input-box"
+                            id="visitorName"
+                            type="text"
+                            placeholder="Enter your name"
+                            maxlength="50"
+                            required
+                        >
+
+
+                        <label class="form-label" for="visitorMessage">
+                            YOUR MESSAGE
+                        </label>
+
+                        <textarea
+                            class="input-box"
+                            id="visitorMessage"
+                            placeholder="Write your message here..."
+                            maxlength="1000"
+                            required
+                        ></textarea>
+
+
+                        <button
+                            class="whatsapp-btn"
+                            type="submit"
+                        >
+                            💬 SEND THROUGH WHATSAPP
+                        </button>
+
+                        <div
+                            class="success-message"
+                            id="successMessage"
+                        >
+                            Message prepared. Opening WhatsApp...
+                        </div>
+
+                        <div class="form-note">
+                            Your message will open in WhatsApp
+                            with the text automatically prepared.
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </section>
+
+
+            <!-- NAVIGATION -->
+
+            <div class="page-navigation">
+
+                <a href="hello.html" class="nav-page-btn">
+                    ← PREVIOUS : PROJECTS
+                </a>
+
+                <div class="page-counter">
+                    04 / 04
+                </div>
+
+                <a href="index.html" class="nav-page-btn">
+                    HOME : SYSTEM →
+                </a>
+
+            </div>
+
+
+            <div class="final-line">
+                AYUSH KUMAR NAVIK • FUTURE STARTS WITH AN IDEA
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- WHATSAPP SCRIPT -->
+
+    <script>
+        const form = document.getElementById("whatsappForm");
+        const successMessage = document.getElementById("successMessage");
+
+        form.addEventListener("submit", function(event) {
+
+            event.preventDefault();
+
+            const name =
+                document.getElementById("visitorName").value.trim();
+
+            const message =
+                document.getElementById("visitorMessage").value.trim();
+
+            if (!name || !message) {
+                return;
+            }
+
+            const phoneNumber = "917739362847";
+
+            const whatsappMessage =
+                "Hello Ayush!%0A%0A" +
+                "Name: " +
+                encodeURIComponent(name) +
+                "%0A%0A" +
+                "Message:%0A" +
+                encodeURIComponent(message);
+
+            const whatsappURL =
+                "https://wa.me/" +
+                phoneNumber +
+                "?text=" +
+                whatsappMessage;
+
+            successMessage.style.display = "block";
+
+            setTimeout(function() {
+
+                window.open(
+                    whatsappURL,
+                    "_blank"
+                );
+
+            }, 500);
+
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My World | Ayush Kumar Navik</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* PAGE-SPECIFIC STYLES */
+
+        .inner-page {
+            width: min(1100px, 92%);
+            margin: auto;
+            padding: 45px 0 120px;
+            position: relative;
+            z-index: 5;
+        }
+
+        .page-heading {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .page-heading .small-tag {
+            margin-bottom: 18px;
+        }
+
+        .page-heading h1 {
+            font-size: clamp(2.8rem, 8vw, 6rem);
+            line-height: 0.95;
+            margin-bottom: 18px;
+            font-weight: 950;
+        }
+
+        .page-heading h1 span {
+            display: block;
+            background: linear-gradient(
+                90deg,
+                #00ffff,
+                #ffffff,
+                #ff00ff,
+                #765cff,
+                #00ffff
+            );
+            background-size: 300% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: gradientText 5s linear infinite;
+        }
+
+        .page-heading p {
+            max-width: 680px;
+            margin: auto;
+            color: #9da9c0;
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 22px;
+        }
+
+        .info-card {
+            position: relative;
+            padding: 28px;
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            border-radius: 22px;
+            background: rgba(255, 255, 255, 0.045);
+            backdrop-filter: blur(16px);
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.05);
+            overflow: hidden;
+            transition: transform 0.35s ease,
+                        border-color 0.35s ease,
+                        box-shadow 0.35s ease;
+        }
+
+        .info-card::before {
+            content: "";
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            right: -80px;
+            top: -80px;
+            border-radius: 50%;
+            background: #00ffff;
+            filter: blur(70px);
+            opacity: 0.12;
+        }
+
+        .info-card:hover {
+            transform: translateY(-7px);
+            border-color: rgba(0, 255, 255, 0.55);
+            box-shadow:
+                0 0 30px rgba(0, 255, 255, 0.12),
+                0 15px 50px rgba(0, 0, 0, 0.25);
+        }
+
+        .info-card:nth-child(2) {
+            border-color: rgba(255, 0, 255, 0.2);
+        }
+
+        .info-card:nth-child(2)::before {
+            background: #ff00ff;
+        }
+
+        .info-card:nth-child(3) {
+            border-color: rgba(124, 92, 255, 0.2);
+        }
+
+        .info-card:nth-child(3)::before {
+            background: #7c5cff;
+        }
+
+        .info-card:nth-child(4) {
+            border-color: rgba(0, 255, 150, 0.2);
+        }
+
+        .info-card:nth-child(4)::before {
+            background: #00ff96;
+        }
+
+        .card-number {
+            color: #00ffff;
+            font-size: 0.65rem;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+        }
+
+        .info-card h2 {
+            font-size: 1.5rem;
+            margin-bottom: 13px;
+        }
+
+        .info-card p {
+            color: #98a5bc;
+            line-height: 1.8;
+            font-size: 0.9rem;
+        }
+
+        .tech-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 9px;
+            margin-top: 18px;
+        }
+
+        .tech-list span {
+            padding: 8px 11px;
+            border: 1px solid rgba(0, 255, 255, 0.18);
+            border-radius: 10px;
+            background: rgba(0, 255, 255, 0.05);
+            color: #b8ffff;
+            font-size: 0.68rem;
+            letter-spacing: 0.5px;
+        }
+
+        .journey {
+            margin-top: 22px;
+            padding: 28px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 22px;
+            background: rgba(255, 255, 255, 0.035);
+            backdrop-filter: blur(15px);
+        }
+
+        .journey h2 {
+            text-align: center;
+            margin-bottom: 28px;
+            font-size: 1.6rem;
+        }
+
+        .timeline {
+            position: relative;
+            display: grid;
+            gap: 18px;
+        }
+
+        .timeline::before {
+            content: "";
+            position: absolute;
+            left: 12px;
+            top: 5px;
+            bottom: 5px;
+            width: 1px;
+            background: linear-gradient(
+                #00ffff,
+                #ff00ff,
+                #7c5cff
+            );
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 40px;
+        }
+
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: 6px;
+            top: 5px;
+            width: 13px;
+            height: 13px;
+            border-radius: 50%;
+            background: #00ffff;
+            box-shadow:
+                0 0 10px #00ffff,
+                0 0 25px rgba(0, 255, 255, 0.5);
+        }
+
+        .timeline-item:nth-child(2)::before {
+            background: #ff00ff;
+            box-shadow:
+                0 0 10px #ff00ff,
+                0 0 25px rgba(255, 0, 255, 0.5);
+        }
+
+        .timeline-item:nth-child(3)::before {
+            background: #7c5cff;
+            box-shadow:
+                0 0 10px #7c5cff,
+                0 0 25px rgba(124, 92, 255, 0.5);
+        }
+
+        .timeline-item h3 {
+            font-size: 0.95rem;
+            margin-bottom: 5px;
+        }
+
+        .timeline-item p {
+            color: #8795ad;
+            font-size: 0.82rem;
+            line-height: 1.6;
+        }
+
+        .page-navigation {
+            margin-top: 35px;
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+        }
+
+        .page-nav-btn {
+            padding: 13px 18px;
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            border-radius: 12px;
+            background: rgba(0, 255, 255, 0.05);
+            color: #d9ffff;
+            font-size: 0.7rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            transition: 0.3s ease;
+        }
+
+        .page-nav-btn:hover {
+            transform: translateY(-4px);
+            border-color: #00ffff;
+            box-shadow: 0 0 25px rgba(0, 255, 255, 0.2);
+        }
+
+        .page-nav-btn.next {
+            border-color: rgba(255, 0, 255, 0.35);
+            background: rgba(255, 0, 255, 0.05);
+        }
+
+        .page-nav-btn.next:hover {
+            border-color: #ff00ff;
+            box-shadow: 0 0 25px rgba(255, 0, 255, 0.2);
+        }
+
+        @media (max-width: 700px) {
+            .inner-page {
+                padding-top: 25px;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .info-card,
+            .journey {
+                padding: 22px;
+            }
+
+            .page-navigation {
+                flex-direction: column;
+            }
+
+            .page-nav-btn {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- SAME FUTURISTIC BACKGROUND -->
+    <div class="background">
+        <div class="orb orb1"></div>
+        <div class="orb orb2"></div>
+        <div class="orb orb3"></div>
+
+        <div class="grid"></div>
+
+        <div class="particles">
+            <span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span>
+        </div>
+    </div>
+
+
+    <!-- NAVBAR -->
+    <header class="navbar">
+
+        <a href="index.html" class="logo">
+            <span>&lt;</span> AYUSH <span>/&gt;</span>
+        </a>
+
+        <div class="status">
+            <i></i> SYSTEM ONLINE
+        </div>
+
+    </header>
+
+
+    <!-- PAGE CONTENT -->
+    <main class="inner-page">
+
+        <section class="page-heading">
+
+            <div class="small-tag">
+                ✦ PROFILE • DIGITAL WORLD ✦
+            </div>
+
+            <h1>
+                MY
+                <span>WORLD</span>
+            </h1>
+
+            <p>
+                A closer look at my interests, technology journey,
+                creative mindset and the things I enjoy building.
+            </p>
+
+        </section>
+
+
+        <!-- ABOUT CARDS -->
+        <section class="about-grid">
+
+            <article class="info-card">
+
+                <div class="card-number">01 / INTRODUCTION</div>
+
+                <h2>Who Am I?</h2>
+
+                <p>
+                    I am Ayush Kumar Navik, a student who loves exploring
+                    technology, artificial intelligence, coding, robotics
+                    and creative digital projects.
+                </p>
+
+            </article>
+
+
+            <article class="info-card">
+
+                <div class="card-number">02 / MINDSET</div>
+
+                <h2>How I Think</h2>
+
+                <p>
+                    I like understanding how things work, experimenting
+                    with new ideas and turning concepts into practical
+                    projects instead of keeping them only on paper.
+                </p>
+
+            </article>
+
+
+            <article class="info-card">
+
+                <div class="card-number">03 / TECHNOLOGY</div>
+
+                <h2>My Tech Zone</h2>
+
+                <p>
+                    My interests cover several areas of modern technology.
+                    I enjoy combining software, hardware and creative ideas.
+                </p>
+
+                <div class="tech-list">
+                    <span>AI</span>
+                    <span>CODING</span>
+                    <span>ROBOTICS</span>
+                    <span>WEB</span>
+                    <span>ARDUINO</span>
+                    <span>CREATIVE TECH</span>
+                </div>
+
+            </article>
+
+
+            <article class="info-card">
+
+                <div class="card-number">04 / VISION</div>
+
+                <h2>What's Next?</h2>
+
+                <p>
+                    Keep learning, keep building and keep improving.
+                    The goal is to transform ideas into useful,
+                    intelligent and exciting technology.
+                </p>
+
+            </article>
+
+        </section>
+
+
+        <!-- JOURNEY -->
+        <section class="journey">
+
+            <h2>MY DIGITAL JOURNEY</h2>
+
+            <div class="timeline">
+
+                <div class="timeline-item">
+                    <h3>Curiosity</h3>
+                    <p>
+                        Started exploring technology and discovering
+                        how digital systems work.
+                    </p>
+                </div>
+
+                <div class="timeline-item">
+                    <h3>Building</h3>
+                    <p>
+                        Began experimenting with coding, electronics,
+                        robotics and personal projects.
+                    </p>
+                </div>
+
+                <div class="timeline-item">
+                    <h3>Creating</h3>
+                    <p>
+                        Combining technology and creativity to build
+                        projects with real-world ideas.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- PAGE BUTTONS -->
+        <nav class="page-navigation">
+
+            <a href="index.html" class="page-nav-btn">
+                ← PREVIOUS : HOME
+            </a>
+
+            <a href="hello.html" class="page-nav-btn next">
+                NEXT : PROJECTS →
+            </a>
+
+        </nav>
+
+    </main>
+
+
+    <!-- PAGE INDICATOR -->
+    <footer class="bottom-bar">
+
+        <div class="page-number">
+            <span>02</span>
+            <div></div>
+            <span>05</span>
+        </div>
+
+        <a href="hello.html" class="next-page">
+            NEXT PAGE <span>→</span>
+        </a>
+
+    </footer>
+
+</body>
+</html>

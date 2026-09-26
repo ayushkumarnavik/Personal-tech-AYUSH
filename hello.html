@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Projects | Ayush Kumar Navik</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* ================================
+           PROJECTS PAGE
+        ================================= */
+
+        .projects-page {
+            min-height: 100vh;
+            padding: 110px 20px 40px;
+            position: relative;
+            z-index: 5;
+        }
+
+        .projects-container {
+            width: min(1150px, 100%);
+            margin: auto;
+        }
+
+        .page-heading {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .page-heading .small-title {
+            color: #00f7ff;
+            font-size: 0.8rem;
+            letter-spacing: 5px;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .page-heading h1 {
+            margin: 0;
+            font-size: clamp(2.5rem, 7vw, 5rem);
+            font-weight: 1000;
+            letter-spacing: 2px;
+            background: linear-gradient(
+                90deg,
+                #00f7ff,
+                #ffffff,
+                #ff00d4,
+                #8b5cff,
+                #00f7ff
+            );
+            background-size: 300%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: gradientText 7s linear infinite;
+        }
+
+        .page-heading p {
+            max-width: 700px;
+            margin: 15px auto 0;
+            color: rgba(255,255,255,0.7);
+            line-height: 1.7;
+        }
+
+        /* PROJECT GRID */
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 22px;
+        }
+
+        .project-card {
+            position: relative;
+            overflow: hidden;
+            padding: 30px;
+            min-height: 250px;
+
+            border: 1px solid rgba(0,247,255,0.25);
+            border-radius: 25px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(0,247,255,0.09),
+                    rgba(139,92,255,0.08),
+                    rgba(255,0,212,0.06)
+                );
+
+            backdrop-filter: blur(15px);
+
+            box-shadow:
+                0 0 25px rgba(0,247,255,0.08),
+                inset 0 0 30px rgba(255,255,255,0.015);
+
+            transition:
+                transform 0.4s ease,
+                border-color 0.4s ease,
+                box-shadow 0.4s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px) scale(1.015);
+
+            border-color: rgba(0,247,255,0.8);
+
+            box-shadow:
+                0 0 35px rgba(0,247,255,0.25),
+                0 0 80px rgba(139,92,255,0.12),
+                inset 0 0 30px rgba(255,255,255,0.03);
+        }
+
+        .project-card::before {
+            content: "";
+            position: absolute;
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+
+            background: rgba(0,247,255,0.12);
+
+            filter: blur(50px);
+
+            top: -100px;
+            right: -80px;
+
+            pointer-events: none;
+        }
+
+        .project-number {
+            position: absolute;
+            top: 18px;
+            right: 22px;
+
+            color: rgba(255,255,255,0.2);
+            font-size: 2.8rem;
+            font-weight: 1000;
+        }
+
+        .project-icon {
+            width: 60px;
+            height: 60px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 18px;
+
+            font-size: 1.7rem;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(0,247,255,0.18),
+                    rgba(255,0,212,0.15)
+                );
+
+            border: 1px solid rgba(0,247,255,0.35);
+
+            box-shadow:
+                0 0 20px rgba(0,247,255,0.15);
+
+            margin-bottom: 20px;
+        }
+
+        .project-card h2 {
+            margin: 0 0 10px;
+
+            font-size: 1.45rem;
+            color: #fff;
+
+            letter-spacing: 0.5px;
+        }
+
+        .project-card p {
+            color: rgba(255,255,255,0.65);
+            line-height: 1.7;
+            margin: 0 0 20px;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tech-tag {
+            padding: 7px 11px;
+
+            border-radius: 50px;
+
+            font-size: 0.7rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+
+            color: #dffcff;
+
+            background: rgba(0,247,255,0.08);
+            border: 1px solid rgba(0,247,255,0.2);
+        }
+
+        /* SKILLS */
+
+        .skills-section {
+            margin-top: 70px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 1.7rem;
+            margin-bottom: 25px;
+            color: #fff;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        .skill-box {
+            padding: 20px 15px;
+            text-align: center;
+
+            border-radius: 18px;
+
+            border: 1px solid rgba(255,255,255,0.1);
+
+            background: rgba(255,255,255,0.025);
+
+            transition: 0.3s ease;
+        }
+
+        .skill-box:hover {
+            transform: translateY(-5px);
+
+            border-color: rgba(255,0,212,0.45);
+
+            box-shadow:
+                0 0 25px rgba(255,0,212,0.1);
+        }
+
+        .skill-box .skill-icon {
+            font-size: 1.7rem;
+            margin-bottom: 10px;
+        }
+
+        .skill-box strong {
+            display: block;
+            color: #fff;
+            font-size: 0.9rem;
+        }
+
+        .skill-box span {
+            display: block;
+            color: rgba(255,255,255,0.45);
+            font-size: 0.7rem;
+            margin-top: 5px;
+        }
+
+        /* FUTURE PANEL */
+
+        .future-panel {
+            margin-top: 60px;
+            padding: 35px;
+
+            text-align: center;
+
+            border-radius: 28px;
+
+            border: 1px solid rgba(139,92,255,0.3);
+
+            background:
+                linear-gradient(
+                    120deg,
+                    rgba(0,247,255,0.07),
+                    rgba(139,92,255,0.1),
+                    rgba(255,0,212,0.07)
+                );
+
+            box-shadow:
+                0 0 40px rgba(139,92,255,0.08);
+        }
+
+        .future-panel .future-label {
+            color: #00f7ff;
+            font-size: 0.7rem;
+            font-weight: 900;
+            letter-spacing: 4px;
+        }
+
+        .future-panel h2 {
+            font-size: clamp(1.7rem, 5vw, 3rem);
+            margin: 12px 0;
+        }
+
+        .future-panel p {
+            max-width: 650px;
+            margin: auto;
+            color: rgba(255,255,255,0.6);
+            line-height: 1.7;
+        }
+
+        /* NAVIGATION */
+
+        .page-navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+
+            margin-top: 50px;
+        }
+
+        .nav-page-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            min-height: 48px;
+            padding: 0 20px;
+
+            border-radius: 50px;
+
+            color: white;
+            text-decoration: none;
+
+            border: 1px solid rgba(0,247,255,0.25);
+
+            background: rgba(0,247,255,0.05);
+
+            font-size: 0.75rem;
+            font-weight: 900;
+            letter-spacing: 1px;
+
+            transition: 0.3s ease;
+        }
+
+        .nav-page-btn:hover {
+            transform: translateY(-3px);
+
+            background: rgba(0,247,255,0.12);
+
+            border-color: #00f7ff;
+
+            box-shadow:
+                0 0 25px rgba(0,247,255,0.2);
+        }
+
+        .page-counter {
+            color: rgba(255,255,255,0.4);
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            font-weight: 900;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 800px) {
+
+            .projects-page {
+                padding: 95px 14px 30px;
+            }
+
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .skills-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .project-card {
+                min-height: auto;
+            }
+
+            .future-panel {
+                padding: 28px 18px;
+            }
+        }
+
+        @media (max-width: 500px) {
+
+            .page-heading {
+                margin-bottom: 30px;
+            }
+
+            .page-heading h1 {
+                font-size: 2.5rem;
+            }
+
+            .project-card {
+                padding: 23px;
+                border-radius: 20px;
+            }
+
+            .project-card h2 {
+                font-size: 1.25rem;
+            }
+
+            .skills-grid {
+                gap: 10px;
+            }
+
+            .skill-box {
+                padding: 17px 8px;
+            }
+
+            .page-navigation {
+                flex-direction: column;
+            }
+
+            .nav-page-btn {
+                width: 100%;
+            }
+
+            .page-counter {
+                order: -1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- FUTURISTIC BACKGROUND -->
+
+    <div class="orb orb-one"></div>
+    <div class="orb orb-two"></div>
+    <div class="grid"></div>
+
+    <div class="particles">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+
+    <!-- NAVBAR -->
+
+    <nav class="navbar">
+
+        <a href="index.html" class="logo">
+            AYUSH<span>.</span>
+        </a>
+
+        <div class="status">
+            <span></span>
+            SYSTEM ONLINE
+        </div>
+
+    </nav>
+
+
+    <!-- MAIN -->
+
+    <main class="projects-page">
+
+        <div class="projects-container">
+
+
+            <!-- HEADING -->
+
+            <header class="page-heading">
+
+                <div class="small-title">
+                    SYSTEM / PROJECTS / 03
+                </div>
+
+                <h1>MY TECH ZONE</h1>
+
+                <p>
+                    A futuristic collection of my interests, ideas,
+                    experiments and technology journey.
+                </p>
+
+            </header>
+
+
+            <!-- PROJECTS -->
+
+            <section class="project-grid">
+
+
+                <!-- PROJECT 01 -->
+
+                <article class="project-card">
+
+                    <div class="project-number">01</div>
+
+                    <div class="project-icon">
+                        🤖
+                    </div>
+
+                    <h2>ROBOTICS</h2>
+
+                    <p>
+                        Exploring intelligent machines, automation,
+                        sensors and robotic systems that connect
+                        software with the real world.
+                    </p>
+
+                    <div class="tech-tags">
+                        <span class="tech-tag">ARDUINO</span>
+                        <span class="tech-tag">SENSORS</span>
+                        <span class="tech-tag">AUTOMATION</span>
+                    </div>
+
+                </article>
+
+
+                <!-- PROJECT 02 -->
+
+                <article class="project-card">
+
+                    <div class="project-number">02</div>
+
+                    <div class="project-icon">
+                        🧠
+                    </div>
+
+                    <h2>ARTIFICIAL INTELLIGENCE</h2>
+
+                    <p>
+                        Learning how intelligent systems analyse data,
+                        recognise patterns and make useful decisions.
+                    </p>
+
+                    <div class="tech-tags">
+                        <span class="tech-tag">AI</span>
+                        <span class="tech-tag">ML</span>
+                        <span class="tech-tag">DATA</span>
+                    </div>
+
+                </article>
+
+
+                <!-- PROJECT 03 -->
+
+                <article class="project-card">
+
+                    <div class="project-number">03</div>
+
+                    <div class="project-icon">
+                        💻
+                    </div>
+
+                    <h2>CODING & WEB</h2>
+
+                    <p>
+                        Building interactive websites and digital
+                        experiences using code, design, animations
+                        and creative interfaces.
+                    </p>
+
+                    <div class="tech-tags">
+                        <span class="tech-tag">HTML</span>
+                        <span class="tech-tag">CSS</span>
+                        <span class="tech-tag">WEB</span>
+                    </div>
+
+                </article>
+
+
+                <!-- PROJECT 04 -->
+
+                <article class="project-card">
+
+                    <div class="project-number">04</div>
+
+                    <div class="project-icon">
+                        ⚡
+                    </div>
+
+                    <h2>PRIMO</h2>
+
+                    <p>
+                        A technology-focused innovation concept built
+                        around smart systems, monitoring, automation,
+                        precision and rapid response.
+                    </p>
+
+                    <div class="tech-tags">
+                        <span class="tech-tag">SMART TECH</span>
+                        <span class="tech-tag">INNOVATION</span>
+                        <span class="tech-tag">AUTOMATION</span>
+                    </div>
+
+                </article>
+
+            </section>
+
+
+            <!-- SKILLS -->
+
+            <section class="skills-section">
+
+                <h2 class="section-title">
+                    ⚡ TECHNOLOGY MATRIX
+                </h2>
+
+                <div class="skills-grid">
+
+                    <div class="skill-box">
+                        <div class="skill-icon">🤖</div>
+                        <strong>Robotics</strong>
+                        <span>BUILD / CONTROL</span>
+                    </div>
+
+                    <div class="skill-box">
+                        <div class="skill-icon">🧠</div>
+                        <strong>AI</strong>
+                        <span>INTELLIGENCE</span>
+                    </div>
+
+                    <div class="skill-box">
+                        <div class="skill-icon">💻</div>
+                        <strong>Coding</strong>
+                        <span>LOGIC / SYSTEMS</span>
+                    </div>
+
+                    <div class="skill-box">
+                        <div class="skill-icon">🌐</div>
+                        <strong>Web</strong>
+                        <span>DIGITAL WORLD</span>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- FUTURE -->
+
+            <section class="future-panel">
+
+                <div class="future-label">
+                    NEXT GENERATION MODE
+                </div>
+
+                <h2>
+                    BUILD. CREATE. INNOVATE.
+                </h2>
+
+                <p>
+                    My goal is to keep learning technology,
+                    turn ideas into real projects and create
+                    systems that solve real-world problems.
+                </p>
+
+            </section>
+
+
+            <!-- NAVIGATION -->
+
+            <div class="page-navigation">
+
+                <a href="page.html" class="nav-page-btn">
+                    ← PREVIOUS : MY WORLD
+                </a>
+
+                <div class="page-counter">
+                    03 / 04
+                </div>
+
+                <a href="dude.html" class="nav-page-btn">
+                    NEXT : CONTACT →
+                </a>
+
+            </div>
+
+        </div>
+
+    </main>
+
+</body>
+</html>
